@@ -1,0 +1,194 @@
+<form action="{:request()->url()}" autocomplete="off" class="layui-form layui-card" data-auto="true" method="post">
+    <div class="layui-card-body padding-40 padding-bottom-20">
+
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">名称</span>
+            <input class="layui-input" name="name" placeholder="请输入名称" required value="{$vo.name|default=''}">
+        </label>
+
+        <div class="layui-form-item">
+            <span class="color-green font-w7 label-required-prev">商品封面及轮播图片</span>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th class="text-center" style="width:90px">封面图</th>
+                    <th class="text-left" style="width:auto">轮播图片</th>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        <input name="cover" type="hidden" value="{$vo.cover|default=''}">
+                        <script>$('[name="cover"]').uploadOneImage();</script>
+                    </td>
+                    <td class="text-left">
+                        <input name="slider" type="hidden" value="{$vo.slider|default=''}">
+                        <script>$('[name="slider"]').uploadMultipleImage();</script>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">标签</span>
+            <input class="layui-input" name="label" placeholder="请输入标签" value="{$vo.label|default=''}">
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">价格</span>
+            <input class="layui-input" name="price" placeholder="请输入价格" value="{$vo.price|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">面积</span>
+            <input class="layui-input" name="area" placeholder="请输入面积" value="{$vo.area|default=''}">
+        </label>
+        <label class="layui-form-item block">
+            <span class="font-w7 color-green">装修情况</span>
+            <textarea class="layui-textarea" name="renovation" placeholder="请输入装修情况">{$vo.renovation|default=''|raw}</textarea>
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">楼层高度</span>
+            <input class="layui-input" name="floor_height" placeholder="请输入楼层高度" value="{$vo.floor_height|default=''}">
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">户型</span>
+            <input class="layui-input" name="house_type" placeholder="请输入户型" value="{$vo.house_type|default=''}">
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">产权属性</span>
+            <input class="layui-input" name="property_right" placeholder="请输入产权属性" value="{$vo.property_right|default=''}">
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">朝向</span>
+            <input class="layui-input" name="orientation" placeholder="请输入朝向" value="{$vo.orientation|default=''}">
+        </label>
+
+<!--2021-7-30-新增 start-->
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">交房时间</span>
+            <input class="layui-input" name="delivery_time" placeholder="请输入交房时间" value="{$vo.delivery_time|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">产权年限</span>
+            <input class="layui-input" name="property_years" placeholder="请输入产权年限" value="{$vo.property_years|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">物业公司</span>
+            <input class="layui-input" name="property_company" placeholder="请输入物业公司" value="{$vo.property_company|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">开发商</span>
+            <input class="layui-input" name="developers" placeholder="请输入开发商" value="{$vo.developers|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">开发商品牌</span>
+            <input class="layui-input" name="developer_brand" placeholder="请输入商品牌" value="{$vo.developer_brand|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">容积率</span>
+            <input class="layui-input" name="plot_ratio" placeholder="请输入容积率" value="{$vo.plot_ratio|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">绿化率</span>
+            <input class="layui-input" name="greening_rate" placeholder="请输入绿化率" value="{$vo.greening_rate|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">总户数</span>
+            <input class="layui-input" name="total_households" placeholder="请输入总户数" value="{$vo.total_households|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">车位数</span>
+            <input class="layui-input" name="vehicles" placeholder="请输入车位数" value="{$vo.vehicles|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">车位比</span>
+            <input class="layui-input" name="space_ratio" placeholder="请输入车位比" value="{$vo.space_ratio|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">均价</span>
+            <input class="layui-input" name="average_price" placeholder="请输入均价" value="{$vo.average_price|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">得房率</span>
+            <input class="layui-input" name="qccupancy_rate" placeholder="请输入得房率" value="{$vo.qccupancy_rate|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">物业费</span>
+            <input class="layui-input" name="property_fee" placeholder="请输入物业费" value="{$vo.property_fee|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">物业类型</span>
+            <input class="layui-input" name="property_type" placeholder="请输入物业类型" value="{$vo.property_type|default=''}">
+        </label>
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">建筑类型</span>
+            <input class="layui-input" name="building_type" placeholder="请输入建筑类型" value="{$vo.building_type|default=''}">
+        </label>
+
+        <label class="layui-form-item block">
+            <span class="font-w7 color-green">交通配套</span>
+            <textarea class="layui-textarea" name="traffic_supporting" placeholder="请输入交通配套">{$vo.traffic_supporting|default=''|raw}</textarea>
+        </label>
+        <label class="layui-form-item block">
+            <span class="font-w7 color-green">教育资源</span>
+            <textarea class="layui-textarea" name="educational_resources" placeholder="请输入教育资源">{$vo.educational_resources|default=''|raw}</textarea>
+        </label>
+        <label class="layui-form-item block">
+            <span class="font-w7 color-green">医疗健康</span>
+            <textarea class="layui-textarea" name="medical_health" placeholder="请输入医疗健康">{$vo.medical_health|default=''|raw}</textarea>
+        </label>
+        <label class="layui-form-item block">
+            <span class="font-w7 color-green">商场购物</span>
+            <textarea class="layui-textarea" name="shopping_mall" placeholder="请输入商场购物">{$vo.shopping_mall|default=''|raw}</textarea>
+        </label>
+        <label class="layui-form-item block">
+            <span class="font-w7 color-green">生活娱乐</span>
+            <textarea class="layui-textarea" name="life_entertainment" placeholder="请输入生活娱乐">{$vo.life_entertainment|default=''|raw}</textarea>
+        </label>
+<!--2021-7-30-新增 end-->
+        <!-- <label class="layui-form-item block">-->
+        <!--    <span class="font-w7 color-green">装修情况</span>-->
+        <!--    <textarea class="layui-textarea" name="renovation" placeholder="请输入装修情况">{$vo.renovation|default=''|raw}</textarea>-->
+        <!--</label>-->
+
+        <!-- <label class="layui-form-item block">-->
+        <!--    <span class="font-w7 color-green">装修情况</span>-->
+        <!--    <textarea class="layui-textarea" name="renovation" placeholder="请输入装修情况">{$vo.renovation|default=''|raw}</textarea>-->
+        <!--</label>-->
+
+        <!-- <label class="layui-form-item block">-->
+        <!--    <span class="font-w7 color-green">装修情况</span>-->
+        <!--    <textarea class="layui-textarea" name="renovation" placeholder="请输入装修情况">{$vo.renovation|default=''|raw}</textarea>-->
+        <!--</label>-->
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">经度</span><br/><a href='https://lbs.qq.com/getPoint'  target="_blank">获取经纬度</a>
+            <input class="layui-input" name="longitude" placeholder="请输入经度" required value="{$vo.longitude|default=''}">
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">纬度</span><br/><a href='https://lbs.qq.com/getPoint'  target="_blank">获取经纬度</a>
+            <input class="layui-input" name="latitude" placeholder="请输入纬度" required value="{$vo.latitude|default=''}">
+        </label>
+
+        <label class="layui-form-item block relative">
+            <span class="color-green font-w7">详细地址</span>
+            <input class="layui-input" name="address" placeholder="请输入详细地址" required value="{$vo.address|default=''}">
+        </label>
+
+        <input name='type' type='hidden' value='2'>
+
+        <div class="hr-line-dashed margin-top-40"></div>
+        {notempty name='vo.id'}<input name='id' type='hidden' value='{$vo.id}'>{/notempty}
+
+        <div class="layui-form-item text-center">
+            <button class="layui-btn layui-btn-danger" ng-click="pageBack()" type="button">取消编辑</button>
+            <button class="layui-btn" type="submit">保存楼盘</button>
+        </div>
+    </div>
+    <script>form.render()</script>
+</form>

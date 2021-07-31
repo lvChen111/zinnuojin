@@ -1,0 +1,70 @@
+<style>
+    img{
+        width: 300px;
+        height: 200px;
+    }
+</style>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>{:__('Title')}</th>
+        <th>{:__('Content')}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{:__('Nickname')}</td>
+        <td>{$row.nickname}</td>
+    </tr>
+    <tr>
+        <td>{:__('RealName')}</td>
+        <td>{$row.realname}</td>
+    </tr>
+    <tr>
+        <td>{:__('IdCard')}</td>
+        <td>{$row.id_card}</td>
+    </tr>
+    <tr>
+        <td>{:__('CreateTime')}</td>
+        <td>{:date('Y-m-d H:i:s',$row.create_time)}</td>
+    </tr>
+    <tr>
+        <td>{:__('Status')}</td>
+        <td id="status">
+            {$row.statusList}
+        </td>
+    </tr>
+    {if condition='$row.status eq 2'}
+        <tr>
+            <td>驳回原因</td>
+            <td>
+                {$row.remark}
+            </td>
+        </tr>
+    {/if}
+    </tbody>
+</table>
+<input type="hidden" value="{$row.id}" id="real_id" />
+
+<!--操作-->
+<div id="btn">
+    {if condition='$row.status eq 0'}
+        <button type="button"  style="margin: 10px auto" class="btn btn-success passOn">审核通过</button>
+        <button type="button"  style="margin: 10px auto" class="btn btn-danger passNo">审核驳回</button>
+    {/if}
+    {if condition='$row.status eq 1'}
+        <button type="button"  style="margin: 10px auto" class="btn btn-danger passNo">重新驳回</button>
+    {/if}
+    {if condition='$row.status eq 2'}
+        <button type="button"  style="margin: 10px auto" class="btn btn-success passOn">重新通过</button>
+    {/if}
+</div>
+<div class="hide layer-footer">
+    <label class="control-label col-xs-12 col-sm-2"></label>
+    <div class="col-xs-12 col-sm-8">
+        <button type="reset" class="btn btn-primary btn-embossed btn-close" onclick="Layer.closeAll();">{:__('Close')}</button>
+    </div>
+</div>
+<script>
+
+</script>

@@ -1,0 +1,90 @@
+{extend name="../../admin/view/main"}
+
+{block name="button"}
+<!--{if auth("add")}-->
+<button class='layui-btn layui-btn-sm layui-btn-primary' data-modal='{:url("add")}'>添加楼盘</button>
+<!--{/if}-->
+
+<!--{if auth("remove")}-->
+<button class='layui-btn layui-btn-sm layui-btn-primary' data-action='{:url("remove")}' data-rule="id#{key}">删除分类</button>
+<!--{/if}-->
+{/block}
+
+{block name="content"}
+<div class="think-box-shadow">
+    {include file='index/index_search'}
+    {notempty name='list'}
+    <table class="layui-table" lay-skin="line">
+        <thead>
+        <tr>
+            <th class='list-table-check-td think-checkbox'>
+                <label><input data-auto-none data-check-target='.list-check-box' type='checkbox'></label>
+            </th>
+            <th class='list-table-sort-td'>
+                <button class="layui-btn layui-btn-xs" data-reload type="button">刷 新</button>
+            </th>
+            <th class="text-left nowrap">封面图</th>
+            <th class="text-left nowrap">名称</th>
+            <th class="text-left nowrap">当前价格</th>
+            <th class="text-left nowrap">面积</th>
+            <th class="text-left nowrap">户型图</th>
+            <th class="text-left nowrap">详细地址</th>
+            <th class="text-left nowrap">创建时间</th>
+            <th class="text-left nowrap">是否推荐</th>
+            <th class="text-left nowrap">上下架</th>
+            <th class="text-left nowrap"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr data-dbclick>
+            <td class='list-table-check-td think-checkbox'>
+                <label><input class="list-check-box" type='checkbox' value='{$vo.id}'></label>
+            </td>
+            <td class='list-table-sort-td'>
+                <label><input class="list-sort-input" data-action-blur="{:request()->url()}" data-loading="false" data-value="id#{$vo.id};action#sort;sort#{value}" value="{$vo.sort}"></label>
+            </td>
+            <td>
+                {notempty name='vo.cover'}
+                <div class="headimg" data-lazy-src="{$vo.cover}" data-tips-image></div>
+                {/notempty}
+            </td>
+            <td class="text-left nowrap">{$vo.name|default=''}</td>
+            <td class="text-left nowrap">{$vo.price|default=''}</td>
+            <td class="text-left nowrap">{$vo.area|default=''}</td>
+            <td class="text-left nowrap">
+                <div>
+                    <a class="layui-btn layui-btn-xs layui-btn-primary" data-modal='{:url("houseimg")}?id={$vo.id}'>{$vo.houseimg_num}张/上传</a>
+                    <a class="layui-btn layui-btn-xs" data-open='{:url("houseimglist")}?id={$vo.id}'>查 看</a>
+                </div>
+            </td>
+            <td class="text-left nowrap">{$vo.address|default=''}</td>
+            <td class="text-left nowrap">{$vo.create_at|format_datetime}</td>
+
+            <td>{if $vo.status eq 0}<span class="color-red">下架中</span>{elseif $vo.status eq 1}<span class="color-green">上架中</span>{/if}</td>
+
+            <td class='text-left nowrap'>
+                <!--{if auth("edit")}-->
+                <a class="layui-btn layui-btn-sm" data-dbclick data-modal="{:url('edit')}?id={$vo.id}" data-title="编辑标签" data-width="500px">编 辑</a>
+
+
+                {if $vo.status eq 0}
+                <a class="layui-btn layui-btn-sm" data-open="{:url('status')}?id={$vo.id}&content=1">上架</a>
+                {elseif $vo.status eq 1}
+                <a class="layui-btn layui-btn-sm layui-btn-warm" data-open="{:url('status')}?id={$vo.id}&content=0">下架</a>
+                {/if}
+
+                <!--{if auth("remove")}-->
+                <a class="layui-btn layui-btn-sm layui-btn-danger" data-action="{:url('remove')}" data-confirm="确定要删除该标签吗？" data-value="id#{$vo.id}">删 除</a>
+                <!--{/if}-->
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {$pagehtml|raw|default=''}
+    {else}
+    <span class="notdata">没有记录哦</span>
+    {/notempty}
+</div>
+{/block}
